@@ -60,7 +60,7 @@ var LinkedList;
     
  })(LinkedList || (LinkedList = {}));
 
-var head = new LinkedList.node(3);
+/*var head = new LinkedList.node(3);
 head.appendNodeToTail(4);
 head.appendNodeToTail(5);
 head.appendNodeToTail(9);
@@ -69,4 +69,4 @@ LinkedList.print(head);
 var newHead = LinkedList.reverse(head);
 LinkedList.print(newHead);
 
-Object.create(LinkedList.node.prototype);
+Object.create(LinkedList.node.prototype);*/
