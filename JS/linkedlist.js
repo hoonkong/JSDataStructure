@@ -5,7 +5,7 @@ var LinkedList;
     
     var Node = function (data) 
     {
-        this.extends(DataNode, data);
+        this.inherits(Common.DataNode, data);
         var _this = this;
         var next;
         //var data = data;
@@ -22,13 +22,6 @@ var LinkedList;
         
         this.appendNodeToTail = appendNodeToTail;
         //this.getData = function () { return data; };
-    }
-    
-    var DataNode = function (data)
-    {
-        var data;
-        
-        this.getData = function () { return data; };
     }
     
     //Node.extends(DataNode, data);
@@ -70,13 +63,13 @@ var LinkedList;
     
  })(LinkedList || (LinkedList = {}));
 
-var head = new LinkedList.Node(3);
+/*var head = new LinkedList.Node(3);
 head.appendNodeToTail(4);
 head.appendNodeToTail(5);
 head.appendNodeToTail(9);
 LinkedList.print(head);
 
 var newHead = LinkedList.reverse(head);
-LinkedList.print(newHead);
+LinkedList.print(newHead);*/
 
 //Object.create(LinkedList.node.prototype);

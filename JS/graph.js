@@ -1,66 +1,92 @@
 var Graph;
-(function(Graph)
-{
-    "use strict"
+(function (Graph) {
+    "use strict";
      
-    var node = function (data)
-    {
+    var Node = function (data) {
+        this.inherits(Common.DataNode, data);
         var children;
-        var data = data;
          
-        var addChind = function (node)
-        {
-            if (!children)
-            {
+        var addChind = function (node) {
+            if (!children) {
                 children = [];
-            }
+            };
+            
             children.push(node);
-        }
+        };
          
         this.addChild = addChind;
-        this.data = data;
-        this.children = children;
-    }
+        this.getChildren = function() { return children; };
+    };
     
-    var print = function(node)
-    {
-        console.log("[" + node.data + "]");
-        
-        for(var i = 0; i < node.children.length; i++)
-        {
-            print(node.Children[i])
+    var deapthFirstPrint = function(node) {
+        var i;
+        if (node) {
+           
+            console.log("[" + node.getData() + "]");
+            var children = node.getChildren();
+            
+            if (children) {
+                for(i = 0; i < children.length; i++) {
+                    //console.log("[" + node.getData() + "]");
+                    print(children[i]);
+                };
+            };
+        };
+    };
+    
+    var breadthFirstPrint = function(root) {
+        var queue = [];
+        var i, node, children;
+        queue.push(root);
+        console.log("[" + root.getData() + "]");
+       
+        while (queue.length > 0) {
+            node = queue.shift();
+            children = node.getChildren();
+            if (children) {
+                for(i = 0; i < children.length; i++) {
+                    console.log("[" + children[i].getData() + "]");
+                    queue.push(children[i]);
+                }
+            }
         }
-    }
+    };
     
-    Graph.node = node;
-    Graph.print = print;
+    Graph.Node = Node;
+    Graph.deapthFirstPrint = deapthFirstPrint;
+    Graph.breadthFirstPrint = breadthFirstPrint;
 })(Graph || (Graph = {}));
 
-/*var n1, n2, n3, n4;
-var head = new Graph.node("head");
-head.addChild((n1 = new Graph.node("head-1")));
-head.addChild((n2 = new Graph.node("head-2")));
-head.addChild((n3 = new Graph.node("head-3")));
-head.addChild((n4 = new Graph.node("head-4")));
+var n1, n2, n3, n4;
+var head = new Graph.Node("head");
+head.addChild((n1 = new Graph.Node("head-1")));
+head.addChild((n2 = new Graph.Node("head-2")));
+head.addChild((n3 = new Graph.Node("head-3")));
+head.addChild((n4 = new Graph.Node("head-4")));
 
-n1.addChild(new Graph.node("head-1-1"));
-n1.addChild(new Graph.node("head-1-2"));
-n1.addChild(new Graph.node("head-1-3"));
-n1.addChild(new Graph.node("head-1-4"));
+n1.addChild(new Graph.Node("head-1-1"));
+n1.addChild(new Graph.Node("head-1-2"));
+n1.addChild(new Graph.Node("head-1-3"));
+n1.addChild(new Graph.Node("head-1-4"));
+n1.addChild(new Graph.Node("head-1-5"));
+n1.addChild(new Graph.Node("head-1-6"));
 
-n2.addChild(new Graph.node("head-2-1"));
-n2.addChild(new Graph.node("head-2-2"));
-n2.addChild(new Graph.node("head-2-3"));
-n2.addChild(new Graph.node("head-2-4"));
+n2.addChild(new Graph.Node("head-2-1"));
+n2.addChild(new Graph.Node("head-2-2"));
+n2.addChild(new Graph.Node("head-2-3"));
 
-n3.addChild(new Graph.node("head-3-1"));
-n3.addChild(new Graph.node("head-3-2"));
-n3.addChild(new Graph.node("head-3-3"));
-n3.addChild(new Graph.node("head-3-4"));
+var n33;
+n3.addChild(new Graph.Node("head-3-1"));
+n3.addChild(new Graph.Node("head-3-2"));
+n3.addChild((n33 = new Graph.Node("head-3-3")));
+n3.addChild(new Graph.Node("head-3-4"));
 
-n4.addChild(new Graph.node("head-4-1"));
-n4.addChild(new Graph.node("head-4-2"));
-n4.addChild(new Graph.node("head-4-3"));
-n4.addChild(new Graph.node("head-4-4"));
+n33.addChild(new Graph.Node("head-3-3-1"));
+n33.addChild(new Graph.Node("head-3-3-2"));
 
-Graph.print(head);*/
+n4.addChild(new Graph.Node("head-4-1"));
+n4.addChild(new Graph.Node("head-4-2"));
+n4.addChild(new Graph.Node("head-4-3"));
+n4.addChild(new Graph.Node("head-4-4"));
+
+Graph.breadthFirstPrint(head);
