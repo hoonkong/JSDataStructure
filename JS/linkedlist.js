@@ -3,11 +3,12 @@ var LinkedList;
  {
     "use strict"
     
-    var node = function(data) 
+    var Node = function (data) 
     {
+        this.extends(DataNode, data);
         var _this = this;
         var next;
-        var data = data;
+        //var data = data;
         
         var appendNodeToTail = function(data) 
         {
@@ -16,19 +17,28 @@ var LinkedList;
             {
                 end = end.next;
             }
-            end.next = new node(data);
+            end.next = new Node(data);
         }
         
         this.appendNodeToTail = appendNodeToTail;
-        this.data = data;
+        //this.getData = function () { return data; };
     }
+    
+    var DataNode = function (data)
+    {
+        var data;
+        
+        this.getData = function () { return data; };
+    }
+    
+    //Node.extends(DataNode, data);
     
     var print = function (node)
     {
         while (node)
         {
             var block = document.createElement("p");
-            block.appendChild(document.createTextNode(node.data));
+            block.appendChild(document.createTextNode(node.getData()));
             block.className = "block";
             
             var display = document.getElementById("display");
@@ -54,13 +64,13 @@ var LinkedList;
         return previous;
     }
     
-    LinkedList.node = node;
+    LinkedList.Node = Node;
     LinkedList.print = print;
     LinkedList.reverse = reverse;
     
  })(LinkedList || (LinkedList = {}));
 
-/*var head = new LinkedList.node(3);
+var head = new LinkedList.Node(3);
 head.appendNodeToTail(4);
 head.appendNodeToTail(5);
 head.appendNodeToTail(9);
@@ -69,4 +79,4 @@ LinkedList.print(head);
 var newHead = LinkedList.reverse(head);
 LinkedList.print(newHead);
 
-Object.create(LinkedList.node.prototype);*/
+//Object.create(LinkedList.node.prototype);

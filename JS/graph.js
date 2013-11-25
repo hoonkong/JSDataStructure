@@ -36,7 +36,7 @@ var Graph;
     Graph.print = print;
 })(Graph || (Graph = {}));
 
-var n1, n2, n3, n4;
+/*var n1, n2, n3, n4;
 var head = new Graph.node("head");
 head.addChild((n1 = new Graph.node("head-1")));
 head.addChild((n2 = new Graph.node("head-2")));
@@ -63,4 +63,4 @@ n4.addChild(new Graph.node("head-4-2"));
 n4.addChild(new Graph.node("head-4-3"));
 n4.addChild(new Graph.node("head-4-4"));
 
-Graph.print(head);
+Graph.print(head);*/
