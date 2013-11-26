@@ -28,7 +28,7 @@ var Graph;
             if (children) {
                 for(i = 0; i < children.length; i++) {
                     //console.log("[" + node.getData() + "]");
-                    print(children[i]);
+                    deapthFirstPrint(children[i]);
                 };
             };
         };
@@ -52,9 +52,33 @@ var Graph;
         }
     };
     
+    var depthFirstDomNodeWalker = function (root) {
+        //var root = document.getElementById("root");
+        var divs, i;
+        if (root) {
+            root.className = "visitBg";
+            console.log(root.querySelector("p").innerHTML);
+            divs = root.querySelectorAll("#" + root.id + ">div");
+            for (i = 0; i < divs.length; i++) {
+                setTimeout((function (j) {
+                    root.className = "";
+                    console.log(j);
+                    depthFirstDomNodeWalker(divs[j]);
+                })(i), 1000);
+            }
+        }
+    }
+    
+    var createGraphFromDom = function () {
+        var root = document.getElementById("root");
+        var divs = root.querySelectorAll("#root>div");
+        console.log(divs.length);
+    }
+    
     Graph.Node = Node;
     Graph.deapthFirstPrint = deapthFirstPrint;
     Graph.breadthFirstPrint = breadthFirstPrint;
+    Graph.depthFirstDomNodeWalker = depthFirstDomNodeWalker;
 })(Graph || (Graph = {}));
 
 var n1, n2, n3, n4;
@@ -90,3 +114,5 @@ n4.addChild(new Graph.Node("head-4-3"));
 n4.addChild(new Graph.Node("head-4-4"));
 
 Graph.breadthFirstPrint(head);
+
+Graph.depthFirstDomNodeWalker(document.getElementById("root"));
