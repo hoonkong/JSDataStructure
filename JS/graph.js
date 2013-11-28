@@ -59,12 +59,17 @@ var Graph;
             root.className = "visitBg";
             console.log(root.querySelector("p").innerHTML);
             divs = root.querySelectorAll("#" + root.id + ">div");
-            for (i = 0; i < divs.length; i++) {
-                setTimeout((function (j) {
+            
+            var helper = function (i) {
+                return function (e) {
                     root.className = "";
-                    console.log(j);
-                    depthFirstDomNodeWalker(divs[j]);
-                })(i), 1000);
+                    console.log(i);
+                    depthFirstDomNodeWalker(divs[i]);
+                }
+            };
+            
+            for (i = 0; i < divs.length; i++) {                
+                setTimeout(helper(i), 1000);
             }
         }
     }
